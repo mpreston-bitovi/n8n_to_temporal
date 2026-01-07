@@ -71,10 +71,10 @@ src/
   n8n/
     activities/
       ai.activities.ts        # AI & chat activities (I/O, LLM calls)
-      transform.activities.ts # Pure transforms or non-deterministic helpers
+      transform.activities.ts # Pure transforms or non-deterministic helpers (if wanted we can add)
       index.ts                # Barrel export of activities
     workflows/
-      simpleDefine.workflow.ts# Example workflow (maps n8n "Define" pattern)
+      aiagnetchild.workflow.ts# Example workflow called by parents
       loopAndCallChildParent.workflow.ts   # Example loop + AI prompt workflow (optional)
       index.ts                # Barrel export of workflows
     worker.ts                 # Single n8n domain worker for all workflows
