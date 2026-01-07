@@ -3,23 +3,24 @@ import { Connection, Client } from '@temporalio/client'
 import { nanoid } from 'nanoid'
 import { getTemporalClientOptions } from '../utils'
 
-import { processN8nJsonSimpleWorkflow } from '../n8n/workflows/simpleDefine.workflow'
-import { agentLoopWorkflow } from '../n8n/workflows/agentLoop.workflow'
+
+import { aiAgentChildWorkflow } from '../n8n/workflows/aiAgentChild.workflow'
+import { parentLoopAndCallChildWorkflow } from '../n8n/workflows/loopAndCallChildParent.workflow'
 
 const WORKFLOW_MAP = {
-  processN8nJsonSimpleWorkflow,
-  agentLoopWorkflow,
+  aiAgentChildWorkflow,
+  parentLoopAndCallChildWorkflow,
 } as const
 
+
 async function run() {
-  // Usage: npm run n8n:run <workflowName> '<json>'
   const [workflowName, jsonArg] = process.argv.slice(2)
   if (!workflowName || !jsonArg) {
-    throw new Error(`Usage: npm run n8n:run <workflowName> '<json>'`)
+    throw new Error(`Usage: npm run n8n: run <workflowName> '<json>'`)
   }
 
   const wf = (WORKFLOW_MAP as any)[workflowName]
-  if (!wf) throw new Error(`Unknown workflow: ${workflowName}`)
+  if (! wf) throw new Error(`Unknown workflow: ${workflowName}`)
 
   const input = JSON.parse(jsonArg)
 
@@ -30,7 +31,7 @@ async function run() {
   const handle = await client.workflow.start(wf, {
     taskQueue: 'n8n-queue',
     args: [input],
-    workflowId: id
+    workflowId:  id
   })
 
   console.log(`Workflow ${handle.workflowId} running`)

@@ -1,3 +1,2 @@
-export { processN8nJsonSimpleWorkflow } from './simpleDefine.workflow'
-export { agentLoopWorkflow } from './agentLoop.workflow'
-
+export { aiAgentChildWorkflow } from './aiAgentChild.workflow'
+export { parentLoopAndCallChildWorkflow } from './loopAndCallChildParent.workflow'

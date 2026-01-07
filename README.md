@@ -5,7 +5,7 @@ This repository is a lightweight scaffold for porting n8n workflows to Temporal 
 - A small activities library (I/O and AI)
 - A generic client you can use to start any workflow by name
 - Clear conventions to add more workflows quickly
-
+- Check Temporal UI via http://localhost:8233
 ---
 
 ## Quick Start
@@ -75,7 +75,7 @@ src/
       index.ts                # Barrel export of activities
     workflows/
       simpleDefine.workflow.ts# Example workflow (maps n8n "Define" pattern)
-      agentLoop.workflow.ts   # Example loop + AI prompt workflow (optional)
+      loopAndCallChildParent.workflow.ts   # Example loop + AI prompt workflow (optional)
       index.ts                # Barrel export of workflows
     worker.ts                 # Single n8n domain worker for all workflows
   chat-gpt.ts                 # OpenAI Chat helper (memoized)
